@@ -1,0 +1,21 @@
+# Run: .venv/bin/python -m scaling_evolve.algorithms.eve.runner --config-name=lammps
+
+defaults:
+  - runtime: default
+  - loop: default
+  - driver: codex_noninteractive
+  - logger: many_loggers
+  - application: lammps
+  - optimizer: lammps
+  - _self_
+
+label: lammps-interface-bond
+
+loop:
+  max_iterations: 5
+  n_workers_phase2: 1
+  n_solver_examples_phase2: 4
+
+logger:
+  wandb:
+    project: eve-lammps

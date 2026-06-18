@@ -34,3 +34,4 @@ tests/fixtures/stream_json_probes/
 
 **/.DS_Store
 .vscode/
+configs/eve/.runs/

@@ -1,0 +1,54 @@
+# @package _global_
+# LAMMPS InterfaceBond energy/force/velocity application definition
+
+application:
+  name: lammps
+  github_url: https://github.com/ryan1w/InterfaceBond
+  commit: c82b4bf4b49bb0b6c7b483b257dc3c52be9d5a15
+  editable:
+    files:
+      - run_kk.sh
+      - run_kk_bond.sh
+      - in.make_interface_bonds
+      - in.make_interface_bonds_kk
+      - in.make_interface_bonds_kk_bond
+    folders:
+      - lammps/src
+  check_agent:
+    claude: configs/eve/application/lammps/check_claude.md
+    codex: configs/eve/application/lammps/check_codex.toml
+  evaluation_steps:
+    - configs/eve/application/lammps/evaluate.sh
+  evaluation_failure_score:
+    score: -10.0
+    summary: evaluation failed
+  boundary_failure_score:
+    score: -10.0
+    summary: boundary check failed
+  seed_solver_score:
+    score: 0.0
+    summary: "baseline clean commit; stable energy/force/velocity observables parsed"
+    score_metric: stable_observables
+    score_components:
+      score_metric: stable_observables
+      objective: stable_observables
+      energy:
+        final_total_energy: -61108889.0
+        final_kinetic_energy: 51308.757
+      force:
+        v_Fy_int: 13.590582
+        v_Fx: 7.5728758
+        v_Fypc: 210.29194
+        v_Fybot: 0.0
+        v_Fypcb: 0.0
+        Press: 8080.9659
+        Pyz: -72.210667
+        Pzz: -1151.0656
+        Pyy: 20757.49
+      velocity:
+        rms_speed: 0.0013917812854822777
+        max_speed: 0.014799362898912236
+        mean_vx: 0.00004970155410377113
+        mean_vy: -0.0000018522333967495526
+        mean_vz: 0.000003997963253755283
+  seed_solver_skip_evaluation: true
